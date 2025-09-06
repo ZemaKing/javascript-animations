@@ -1,12 +1,16 @@
-var ol = 0; // Original Location
-var circleInterval = setInterval(circleAnimation, 50);
+let ol = 0; // Original Location
+let circleInterval;
 
-function circleAnimation() {
-    if (ol >= (4000 / 50)) {
-        document.getElementById("circle").style.backgroundColor = "dimgray";
-        clearInterval(circleInterval);
-    } else {
-        ol++;
-        document.getElementById("circle").style.left = ol + "px";
-    }
+function circleAnimation(time) {
+	ol++;
+	document.getElementById("circle").style.left = ol + "px";
+
+	if (time < 4000) {
+		circleInterval = requestAnimationFrame(circleAnimation);
+	} else {
+		document.getElementById("circle").style.backgroundColor = "dimgray";
+		cancelAnimationFrame(circleInterval);
+	}
 }
+
+circleInterval = requestAnimationFrame(circleAnimation);
