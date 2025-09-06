@@ -2,6 +2,8 @@ let canvas = document.getElementById("animated-canvas");
 let context = canvas.getContext("2d");
 let canvasInterval = requestAnimationFrame(canvasAnimation);
 let circleX = 60;
+let velocity = 1;
+let acceleration = 0.5;
 
 function canvasAnimation() {
 	circleX++;
@@ -15,6 +17,14 @@ function drawCircle(x, y, s) {
 	context.beginPath();
 	context.arc(x, y, s, 0, 2 * Math.PI);
 	context.fill();
+
+	velocity += acceleration;
+	circleX += velocity;
+
+	if (circleX > canvas.width) {
+		circleX = 0;
+		velocity = 1;
+	}
 }
 
 function clearCanvas() {
