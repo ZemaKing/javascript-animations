@@ -1,10 +1,18 @@
 let ol = 0; // Original Location
+let sc = 1; // Scale
 let isPlaying = false;
 let circleInterval;
 
-function circleAnimation(time) {
+let el = document.getElementById("circle");
+
+function circleAnimation() {
 	ol++;
-	document.getElementById("circle").style.left = ol + "px";
+	sc++;
+
+	el.style.left = ol + "px";
+	el.style.width = sc + "px";
+	el.style.height = sc + "px";
+	el.style.borderRadius = sc * 100 + "px";
 
 	circleInterval = requestAnimationFrame(circleAnimation);
 }
@@ -13,17 +21,17 @@ function mouseClicked() {
 	if (isPlaying) {
 		isPlaying = false;
 
-		document.getElementById("circle").style.backgroundColor = "dimgray";
+		el.style.backgroundColor = "dimgray";
 
 		cancelAnimationFrame(circleInterval);
 	} else {
 		isPlaying = true;
 
-		document.getElementById("circle").style.backgroundColor = "crimson";
+		el.style.backgroundColor = "crimson";
 
 		circleInterval = requestAnimationFrame(circleAnimation);
 	}
 }
 
-document.getElementById("circle").addEventListener("click", mouseClicked);
-document.getElementById("circle").style.backgroundColor = "dimgray";
+el.addEventListener("click", mouseClicked);
+el.style.backgroundColor = "dimgray";
