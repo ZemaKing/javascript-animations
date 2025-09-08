@@ -1,5 +1,4 @@
-let rotatingSquare = document.getElementById("web-animation");
-rotatingSquare.animate(
+let rotatingSquare = document.getElementById("web-animation").animate(
 	[
 		{
 			backgroundColor: '#000000',
